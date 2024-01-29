@@ -5,9 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--textcolor);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  --background: #27272f;
+  --darkaccent: #333333;
+  --table1: #444444;
+  --table2: #222222;
+  --textcolor: #ffffff;
+  --accentcolor1: #ff00ff;
 }

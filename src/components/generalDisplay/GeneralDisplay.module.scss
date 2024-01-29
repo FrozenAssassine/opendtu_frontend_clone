@@ -1,0 +1,21 @@
+.wrapper{
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: var(--darkaccent);
+    font-size: 0.8em;
+    min-width: 200px;
+    width: 100%;
+    margin: 10px;
+}
+
+.headline{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    width: 100%;
+    background-color: var(--accentcolor1);
+}
+
+.content{
+    text-align: center;
+}

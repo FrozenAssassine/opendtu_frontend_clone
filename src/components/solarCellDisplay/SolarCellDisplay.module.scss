@@ -1,0 +1,26 @@
+.wrapper{
+    border-radius: 10px;
+    background-color: var(--darkaccent);
+    font-size: 1.5em;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border: 2px solid white;
+    margin: 1em;
+}
+
+th, td, th{
+    padding: 5px;
+    text-align: center;
+    width: 33%;
+  }
+
+
+table td:nth-child(3) {
+    text-align: center;
+}

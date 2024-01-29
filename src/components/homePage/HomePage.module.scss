@@ -1,0 +1,25 @@
+.page {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.headitems{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.solarCells{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.headline{
+    font-size: 4em;
+    margin-bottom: 1em;
+}
