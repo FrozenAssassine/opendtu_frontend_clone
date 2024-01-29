@@ -1,0 +1,17 @@
+.wrapper{
+    font-size: 1.4em;
+   background-color: var(--accentcolor1);
+   border-radius: 10px;
+   margin: 0.7em;
+   padding: 10px;
+   padding-bottom: 15px;
+   padding-top: 15px;
+   display: flex;
+   align-items: flex-start;
+   justify-content: space-between;
+   @media screen and (min-width: 1800px) {justify-content: space-evenly;}
+}
+
+.alignRight{
+    text-align: right;
+}

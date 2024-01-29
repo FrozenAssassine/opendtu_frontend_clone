@@ -1,0 +1,238 @@
+{
+    "inverters": [
+      {
+        "serial": "116184602099",
+        "name": "KF6_HM1200",
+        "order": 0,
+        "data_age": 1,
+        "poll_enabled": true,
+        "reachable": true,
+        "producing": true,
+        "limit_relative": 100,
+        "limit_absolute": 1200,
+        "AC": {
+          "0": {
+            "Power": {
+              "v": 26.29999924,
+              "u": "W",
+              "d": 1
+            },
+            "Voltage": {
+              "v": 229.8999939,
+              "u": "V",
+              "d": 1
+            },
+            "Current": {
+              "v": 0.109999999,
+              "u": "A",
+              "d": 2
+            },
+            "Power DC": {
+              "v": 27.39999962,
+              "u": "W",
+              "d": 1
+            },
+            "YieldDay": {
+              "v": 3142,
+              "u": "Wh",
+              "d": 0
+            },
+            "YieldTotal": {
+              "v": 1094.634033,
+              "u": "kWh",
+              "d": 3
+            },
+            "Frequency": {
+              "v": 49.95000076,
+              "u": "Hz",
+              "d": 2
+            },
+            "PowerFactor": {
+              "v": 0.815999985,
+              "u": "",
+              "d": 3
+            },
+            "ReactivePower": {
+              "v": 18.60000038,
+              "u": "var",
+              "d": 1
+            },
+            "Efficiency": {
+              "v": 95.98539734,
+              "u": "%",
+              "d": 3
+            }
+          }
+        },
+        "DC": {
+          "0": {
+            "name": {
+              "u": "Hyundai_HiE-S410DG_1"
+            },
+            "Power": {
+              "v": 8.899999619,
+              "u": "W",
+              "d": 1
+            },
+            "Voltage": {
+              "v": 32.40000153,
+              "u": "V",
+              "d": 1
+            },
+            "Current": {
+              "v": 0.280000001,
+              "u": "A",
+              "d": 2
+            },
+            "YieldDay": {
+              "v": 1440,
+              "u": "Wh",
+              "d": 0
+            },
+            "YieldTotal": {
+              "v": 406.2099915,
+              "u": "kWh",
+              "d": 3
+            },
+            "Irradiation": {
+              "v": 2.170731783,
+              "u": "%",
+              "d": 3
+            }
+          },
+          "1": {
+            "name": {
+              "u": "Hyundai_HiE-S410DG_2"
+            },
+            "Power": {
+              "v": 8.899999619,
+              "u": "W",
+              "d": 1
+            },
+            "Voltage": {
+              "v": 32.40000153,
+              "u": "V",
+              "d": 1
+            },
+            "Current": {
+              "v": 0.280000001,
+              "u": "A",
+              "d": 2
+            },
+            "YieldDay": {
+              "v": 1443,
+              "u": "Wh",
+              "d": 0
+            },
+            "YieldTotal": {
+              "v": 386.9790039,
+              "u": "kWh",
+              "d": 3
+            },
+            "Irradiation": {
+              "v": 2.170731783,
+              "u": "%",
+              "d": 3
+            }
+          },
+          "2": {
+            "name": {
+              "u": "JAM60S21_370_3"
+            },
+            "Power": {
+              "v": 9.399999619,
+              "u": "W",
+              "d": 1
+            },
+            "Voltage": {
+              "v": 33.09999847,
+              "u": "V",
+              "d": 1
+            },
+            "Current": {
+              "v": 0.280000001,
+              "u": "A",
+              "d": 2
+            },
+            "YieldDay": {
+              "v": 257,
+              "u": "Wh",
+              "d": 0
+            },
+            "YieldTotal": {
+              "v": 299.8890076,
+              "u": "kWh",
+              "d": 3
+            },
+            "Irradiation": {
+              "v": 2.540540457,
+              "u": "%",
+              "d": 3
+            }
+          },
+          "3": {
+            "name": {
+              "u": "Leer"
+            },
+            "Power": {
+              "v": 0.200000003,
+              "u": "W",
+              "d": 1
+            },
+            "Voltage": {
+              "v": 33.09999847,
+              "u": "V",
+              "d": 1
+            },
+            "Current": {
+              "v": 0.01,
+              "u": "A",
+              "d": 2
+            },
+            "YieldDay": {
+              "v": 2,
+              "u": "Wh",
+              "d": 0
+            },
+            "YieldTotal": {
+              "v": 1.555999994,
+              "u": "kWh",
+              "d": 3
+            }
+          }
+        },
+        "INV": {
+          "0": {
+            "Temperature": {
+              "v": 22.29999924,
+              "u": "°C",
+              "d": 1
+            }
+          }
+        },
+        "events": 2
+      }
+    ],
+    "total": {
+      "Power": {
+        "v": 26.29999924,
+        "u": "W",
+        "d": 1
+      },
+      "YieldDay": {
+        "v": 3142,
+        "u": "Wh",
+        "d": 0
+      },
+      "YieldTotal": {
+        "v": 1094.634033,
+        "u": "kWh",
+        "d": 3
+      }
+    },
+    "hints": {
+      "time_sync": false,
+      "radio_problem": false,
+      "default_password": false
+    }
+  }

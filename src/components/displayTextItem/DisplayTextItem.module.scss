@@ -2,10 +2,11 @@
     border: 2px solid white;
     border-radius: 10px;
     background-color: var(--darkaccent);
-    font-size: 2em;
+    font-size: 1.5em;
     min-width: 200px;
     width: 100%;
-    margin: 10px;
+    margin: 0.7em;
+    padding-bottom: 1em;
 }
 
 .headline{
@@ -17,5 +18,7 @@
 }
 
 .content{
+    margin-top: 1em;
     text-align: center;
+    font-size: 1.2em;
 }

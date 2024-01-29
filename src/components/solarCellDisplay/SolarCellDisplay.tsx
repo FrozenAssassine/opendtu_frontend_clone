@@ -1,16 +1,10 @@
+import { DCData } from "../../dataParser";
 import styles from "./SolarCellDisplay.module.scss";
 
-type solarData = {
-    watt: string;
-    volt: string;
-    ampere: string;
-    daily: string;
-    overall: string;
-};
-
-export default function SolarCellDisplay(data: solarData) {
+export default function SolarCellDisplay(data: DCData) {
     return (
         <div className={styles.wrapper}>
+            <div className={styles.headline}>{data.name.u ?? ""}</div>
             <table>
                 <thead>
                     <tr>
@@ -22,28 +16,28 @@ export default function SolarCellDisplay(data: solarData) {
                 <tbody>
                     <tr>
                         <td>Leistung</td>
-                        <td>{data.watt}</td>
-                        <td>W</td>
+                        <td>{data.Power.v.toFixed(2)}</td>
+                        <td>{data.Power.u}</td>
                     </tr>
                     <tr>
                         <td>Spannung</td>
-                        <td>{data.volt}</td>
-                        <td>V</td>
+                        <td>{data.Voltage.v.toFixed(2)}</td>
+                        <td>{data.Voltage.u}</td>
                     </tr>
                     <tr>
                         <td>Strom</td>
-                        <td>{data.ampere}</td>
-                        <td>A</td>
+                        <td>{data.Current.v.toFixed(2)}</td>
+                        <td>{data.Current.u}</td>
                     </tr>
                     <tr>
                         <td>Tagesertrag</td>
-                        <td>{data.daily}</td>
-                        <td>Wh</td>
+                        <td>{data.YieldDay.v.toFixed(2)}</td>
+                        <td>{data.YieldDay.u}</td>
                     </tr>
                     <tr>
                         <td>Gesamtertrag</td>
-                        <td>{data.overall}</td>
-                        <td>kWh</td>
+                        <td>{data.YieldTotal.v.toFixed(2)}</td>
+                        <td>{data.YieldTotal.u}</td>
                     </tr>
                 </tbody>
             </table>

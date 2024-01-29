@@ -1,8 +1,8 @@
 import styles from './TextPair.module.scss';
 
 type Props = {
-    text1: string,
-    text2: string,
+    text1: string | number,
+    text2: string | number,
     unit: string,
 }
 

@@ -57,16 +57,11 @@ interface DCData {
   }
   
   // Function to Load JSON Data
-  async function loadData(): Promise<SolarData> {
-    const response = await fetch('https://frozenassassine.de/openDTU/getlivedata');
+export default async function loadData(): Promise<SolarData> {
+    const response = await fetch('livedata.json'); //https://frozenassassine.de/openDTU/getlivedata');
+
     const data = await response.json();
     return data as SolarData;
   }
   
-  // Example Call
-  loadData().then((solarData) => {
-    // Access loaded data here and display it in a structured way
-    console.log(solarData.inverters[0].name);
-    console.log(solarData.total.Power.v);
-    // ... additional displays or processing
-  });
+  export type { SolarData, HintsData, TotalData, Inverter, ACData, DCData };
