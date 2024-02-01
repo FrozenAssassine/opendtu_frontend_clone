@@ -8,18 +8,23 @@ import InfoDisplay from "../infoDisplay/InfoDisplay";
 
 export default function HomePage() {
     const [solarData, setSolarData] = useState<SolarData | null>(null);
-    const socket = new WebSocket('ws://frozenassassine.de:5100');
-
-    socket.addEventListener('message', (event) => {
-      console.log('Received:', event.data);
-      // Update your website or trigger a refresh when a new file is uploaded
-    });
 
     useEffect(() => {
-      loadData().then((data) => {
-        setSolarData(data);
-      });
-    }, []);
+        const fetchData = async () => {
+          await loadData().then((data) => {
+            setSolarData(data);
+          });
+        };
+    
+        fetchData();
+    
+        const intervalId = setInterval(fetchData, 10000);
+        
+        return () => {
+          clearInterval(intervalId);
+        };
+      }, []);
+    
 
     return (
         <div>
