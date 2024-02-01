@@ -16,10 +16,11 @@
 .solarCells{
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+    @media screen and (min-width: 1800px){ justify-content: center; }
 }
 .headline{
     text-align: center;
