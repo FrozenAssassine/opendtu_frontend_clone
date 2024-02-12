@@ -12,6 +12,32 @@
     border: 2px solid white;
     margin: 0.7em;
     font-size: 1.4em;
+
+    th{
+        color: var(--accentcolor1);
+      }
+      
+      th, td, th{
+        padding: 5px;
+        text-align: left;
+      }
+      
+      table tr:nth-child(even){
+        background-color: rgb(65, 65, 65);
+      }
+      
+      table td:nth-child(2), table th:nth-child(2) {
+        text-align: right;
+        padding-left: 30px;
+        font-weight: bold;
+      }
+      
+      table td:nth-child(3), table th:nth-child(3) {
+        text-align: left;
+        padding-left: 10px;
+      }
+      
+      
 }
 .headline{
     text-align: center;
