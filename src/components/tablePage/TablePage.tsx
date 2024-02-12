@@ -10,10 +10,13 @@ export default function TablePage() {
         await loadAllData().then((data) => {
             let items: DailySolarData[] = [];
 
-            let lines: string[] = data.split("\r\n");
+            let lines: string[] = data.split("\n");
 
             for (let i = 0; i < lines.length; i++) {
                 let separated = lines[i].split("|");
+                if(lines[i].length == 0 || separated.length == 0)
+                    continue;
+                
                 items.push(
                     new DailySolarData(
                         separated[0],

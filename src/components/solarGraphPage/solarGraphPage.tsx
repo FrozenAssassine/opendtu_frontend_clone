@@ -35,7 +35,7 @@ export default function SolarGraphPage() {
         await loadAllData().then((data) => {
             let items: DailySolarData[] = [];
 
-            let lines: string[] = data.split("\r\n");
+            let lines: string[] = data.split("\n");
             setItemsCount(lines.length);
 
             let start = lines.length - showEntryCount;

@@ -57,7 +57,7 @@ interface SolarData {
 }
 
 async function loadAllData(): Promise<string> {
-    const response = await fetch("livedata.txt"); //https://frozenassassine.de/openDTU/getlivedata');
+    const response = await fetch("alldata.txt"); //https://frozenassassine.de/openDTU/getlivedata');
     return response.text();
 }
 
