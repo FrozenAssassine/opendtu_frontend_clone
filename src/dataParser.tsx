@@ -7,9 +7,9 @@ interface DCData {
     YieldDay: { v: number; u: string; d: number };
     YieldTotal: { v: number; u: string; d: number };
     Irradiation?: { v: number; u: string; d: number };
-  }
-  
-  interface ACData {
+}
+
+interface ACData {
     Power: { v: number; u: string; d: number };
     Voltage: { v: number; u: string; d: number };
     Current: { v: number; u: string; d: number };
@@ -20,9 +20,9 @@ interface DCData {
     PowerFactor: { v: number; u: string; d: number };
     ReactivePower: { v: number; u: string; d: number };
     Efficiency: { v: number; u: string; d: number };
-  }
-  
-  interface Inverter {
+}
+
+interface Inverter {
     serial: string;
     name: string;
     order: number;
@@ -36,32 +36,39 @@ interface DCData {
     DC: { [key: number]: DCData };
     INV: { [key: number]: { Temperature: { v: number; u: string; d: number } } };
     events: number;
-  }
-  
-  interface TotalData {
+}
+
+interface TotalData {
     Power: { v: number; u: string; d: number };
     YieldDay: { v: number; u: string; d: number };
     YieldTotal: { v: number; u: string; d: number };
-  }
-  
-  interface HintsData {
+}
+
+interface HintsData {
     time_sync: boolean;
     radio_problem: boolean;
     default_password: boolean;
-  }
-  
-  interface SolarData {
+}
+
+interface SolarData {
     inverters: Inverter[];
     total: TotalData;
     hints: HintsData;
-  }
-  
-  // Function to Load JSON Data
-export default async function loadData(): Promise<SolarData> {
-    const response = await fetch('livedata.json'); //https://frozenassassine.de/openDTU/getlivedata');
+}
+
+async function loadAllData(): Promise<string> {
+    const response = await fetch("livedata.txt"); //https://frozenassassine.de/openDTU/getlivedata');
+    return response.text();
+}
+
+// Function to Load JSON Data
+async function loadData(): Promise<SolarData> {
+    const response = await fetch("livedata.json"); //https://frozenassassine.de/openDTU/getlivedata');
 
     const data = await response.json();
     return data as SolarData;
-  }
-  
-  export type { SolarData, HintsData, TotalData, Inverter, ACData, DCData };
+}
+
+export {loadAllData, loadData }
+
+export type { SolarData, HintsData, TotalData, Inverter, ACData, DCData };

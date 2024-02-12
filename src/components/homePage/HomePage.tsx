@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import loadData, { SolarData } from "../../dataParser";
+import { loadData, SolarData } from "../../dataParser";
 import DisplayTextItem from "../displayTextItem/DisplayTextItem";
 import SolarCellDisplay from "../solarCellDisplay/SolarCellDisplay";
 import SolarSummaryDisplay from "../solarSummaryDisplay/SolarSummaryDisplay";

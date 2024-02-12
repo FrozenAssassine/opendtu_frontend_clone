@@ -1,3 +1,17 @@
-.solarGraphPage{
-    
+.chartStyle{
+    width: 50vw;
+    height: 50%;
+}
+
+.solargraphpage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.chartwrapper{
+    width: 80%;
 }
