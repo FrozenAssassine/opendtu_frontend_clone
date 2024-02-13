@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./SolarGraphPage.module.scss";
 import { Line, Bar, Scatter, Radar, Pie } from "react-chartjs-2";
-import { SolarData, loadAllData } from "../../dataParser";
+import { SolarData, loadAllData, getSolarItems } from "../../dataParser";
 import { Chart, registerables } from "chart.js";
 import React from "react";
 
@@ -32,27 +32,11 @@ export default function SolarGraphPage() {
     const [itemsCount, setItemsCount] = useState(0);
 
     const fetchData = async () => {
-        await loadAllData().then((data) => {
-            let items: DailySolarData[] = [];
+        await loadAllData().then((data: string) => {
+            let res = getSolarItems(showEntryCount, data);
+            const items = res.items;
 
-            let lines: string[] = data.split("\n");
-            setItemsCount(lines.length);
-
-            let start = lines.length - showEntryCount;
-            for (let i = start; i < lines.length; i++) {
-                let separated = lines[i].split("|");
-                items.push(
-                    new DailySolarData(
-                        separated[0],
-                        parseFloat(separated[1]),
-                        parseFloat(separated[2]),
-                        parseFloat(separated[3]),
-                        separated[4],
-                        parseFloat(separated[5]),
-                        separated[6]
-                    )
-                );
-            }
+            setItemsCount(res.rawCount);
             setSolarData(items);
 
             setDates(items.map((entry) => entry.Date));

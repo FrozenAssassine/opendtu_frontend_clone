@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SolarData, loadAllData } from "../../dataParser";
+import { SolarData, getSolarItems, loadAllData } from "../../dataParser";
 import { DailySolarData } from "../solarGraphPage/solarGraphPage";
 import styles from "./TablePage.module.scss";
 
@@ -7,28 +7,10 @@ export default function TablePage() {
     const [solarData, setSolarData] = useState<DailySolarData[]>([]);
 
     const fetchData = async () => {
-        await loadAllData().then((data) => {
-            let items: DailySolarData[] = [];
+        await loadAllData().then((data: string) => {
+            let res = getSolarItems(-1, data);
+            const items = res.items;
 
-            let lines: string[] = data.split("\n");
-
-            for (let i = 0; i < lines.length; i++) {
-                let separated = lines[i].split("|");
-                if(lines[i].length == 0 || separated.length == 0)
-                    continue;
-                
-                items.push(
-                    new DailySolarData(
-                        separated[0],
-                        parseFloat(separated[1]),
-                        parseFloat(separated[2]),
-                        parseFloat(separated[3]),
-                        separated[4],
-                        parseFloat(separated[5]),
-                        separated[6]
-                    )
-                );
-            }
             setSolarData(items.reverse());
         });
     };
@@ -64,3 +46,7 @@ export default function TablePage() {
         </div>
     );
 }
+function setItemsCount(rawCount: number) {
+    throw new Error("Function not implemented.");
+}
+
