@@ -1,3 +1,5 @@
+import { DailySolarData } from "./components/solarGraphPage/solarGraphPage";
+
 // Interfaces
 interface DCData {
     name: { u: string };
@@ -57,7 +59,7 @@ interface SolarData {
 }
 
 async function loadAllData(): Promise<string> {
-    const response = await fetch("livedata.txt"); //https://frozenassassine.de/openDTU/getlivedata');
+    const response = await fetch("alldata.txt"); //https://frozenassassine.de/openDTU/getlivedata');
     return response.text();
 }
 
@@ -69,6 +71,32 @@ async function loadData(): Promise<SolarData> {
     return data as SolarData;
 }
 
-export {loadAllData, loadData }
+function getSolarItems(start: number, data: string): { items: DailySolarData[]; rawCount: number } {
+    let items: DailySolarData[] = [];
+
+    let lines: string[] = data.split("\n").filter(element => element.trim() !== '');
+
+    for (let i = start == -1 ? 0 : lines.length - start; i < lines.length; i++) {
+        let separated = lines[i].split("|");
+        if (separated.length !== 7)
+            continue;
+        
+        items.push(
+            new DailySolarData(
+                separated[0],
+                parseFloat(separated[1]),
+                parseFloat(separated[2]),
+                parseFloat(separated[3]),
+                separated[4],
+                parseFloat(separated[5]),
+                separated[6]
+            )
+        );
+    }
+
+    return { items: items, rawCount: lines.length };
+}
+
+export {loadAllData, loadData, getSolarItems}
 
 export type { SolarData, HintsData, TotalData, Inverter, ACData, DCData };

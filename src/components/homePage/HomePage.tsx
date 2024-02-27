@@ -28,7 +28,6 @@ export default function HomePage() {
 
     return (
         <div>
-            <div className={styles.headline}>OpenDTU</div>
             <div className={styles.header}>
                 <div className={styles.headitems}>
                     <DisplayTextItem content={solarData?.total.YieldTotal} headline="Gesamtertrag Insgesamt"/>

@@ -46,8 +46,23 @@ def formatLiveData(livedata):
 #upload the live data every 20 seconds to the server
 def uploadToServer(livedata):
     try:
-        headers = {'Content-Type': 'application/json'}
-        requests.post("https://frozenassassine.de/openDTU/livedata", json=livedata, headers=headers)
+        requests.post("https://frozenassassine.de/openDTU/livedata", json=livedata)
+    except:
+        custom_print("Could not upload live data")
+        time.sleep(60)
+
+
+def uploadHistoryData():
+    with open("solar.txt") as f:
+        lines = f.readlines()
+	
+        historyData = "\n".join([line for line in lines if line.strip()])
+
+    if len(historyData) == 0:
+        return
+    
+    try:
+        requests.post("https://frozenassassine.de/openDTU/alldata", json={'text': historyData})
     except:
         custom_print("Could not upload live data")
         time.sleep(60)
@@ -60,6 +75,8 @@ def getlivedata():
         return (res.status_code == 200, res.json())
     except:
         return (False, "")
+    
+
 custom_print("-"*50)
 custom_print("Started:")
 
@@ -136,6 +153,9 @@ try:
                 else:   
                     with open("solar.txt", "a") as file:
                         file.write(f"{formatData()}\n")
+
+                uploadHistoryData()
+
             except: #write to file error:
                 actualTime = datetime.now().strftime("%H:%M:%S")
                 custom_print(f"{actualTime}: Error occured while writing to file")
