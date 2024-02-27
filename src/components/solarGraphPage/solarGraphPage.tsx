@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./SolarGraphPage.module.scss";
 import { Line, Bar, Scatter, Radar, Pie } from "react-chartjs-2";
-import { SolarData, loadAllData, getSolarItems } from "../../dataParser";
+import { SolarData, loadAllData, getAllSolarItems } from "../../dataParser";
 import { Chart, registerables } from "chart.js";
 import React from "react";
 
@@ -30,20 +30,21 @@ export default function SolarGraphPage() {
     const [solarData, setSolarData] = useState<DailySolarData[]>([]);
     const [showEntryCount, setShowEntryCount] = useState(31);
     const [itemsCount, setItemsCount] = useState(0);
+    let allItems: DailySolarData[];
 
     const fetchData = async () => {
         await loadAllData().then((data: string) => {
-            let res = getSolarItems(showEntryCount, data);
-            const items = res.items;
+            allItems = getAllSolarItems(data)['items'];
+            let showItems = allItems.splice(showEntryCount);
 
-            setItemsCount(res.rawCount);
-            setSolarData(items);
+            setItemsCount(showItems.length);
+            setSolarData(showItems);
 
-            setDates(items.map((entry) => entry.Date));
-            setYieldTotal(items.map((entry) => entry.YieldTotal));
-            setYieldDay(items.map((entry) => entry.YieldDay));
-            setTemperature(items.map((entry) => entry.Temperature));
-            setHighestWatt(items.map((entry) => entry.HighestWatt));
+            setDates(showItems.map((entry) => entry.Date));
+            setYieldTotal(showItems.map((entry) => entry.YieldTotal));
+            setYieldDay(showItems.map((entry) => entry.YieldDay));
+            setTemperature(showItems.map((entry) => entry.Temperature));
+            setHighestWatt(showItems.map((entry) => entry.HighestWatt));
         });
     };
 
@@ -120,6 +121,18 @@ export default function SolarGraphPage() {
             {
                 label: "Temperatur Peak",
                 data: temperature,
+                backgroundColor: "rgb(0,255,100)",
+                borderColor: "rgb(0,255,100)",
+            },
+        ],
+    };
+
+    const historyData = {
+        labels: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober',' November', 'Dezember'],
+        datasets: [
+            {
+                label: "Baum",
+                data: allItems.map(x => x.YieldDay),
                 backgroundColor: "rgb(0,255,100)",
                 borderColor: "rgb(0,255,100)",
             },

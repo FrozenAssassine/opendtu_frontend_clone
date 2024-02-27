@@ -71,32 +71,29 @@ async function loadData(): Promise<SolarData> {
     return data as SolarData;
 }
 
-function getSolarItems(start: number, data: string): { items: DailySolarData[]; rawCount: number } {
+function getAllSolarItems(data: string): { items: DailySolarData[]; } {
     let items: DailySolarData[] = [];
-
     let lines: string[] = data.split("\n").filter(element => element.trim() !== '');
 
-    for (let i = start == -1 ? 0 : lines.length - start; i < lines.length; i++) {
+    for (let i = 0; i < lines.length; i++) {
         let separated = lines[i].split("|");
         if (separated.length !== 7)
             continue;
         
-        items.push(
-            new DailySolarData(
-                separated[0],
-                parseFloat(separated[1]),
-                parseFloat(separated[2]),
-                parseFloat(separated[3]),
-                separated[4],
-                parseFloat(separated[5]),
-                separated[6]
-            )
+        var item = new DailySolarData(
+            separated[0],
+            parseFloat(separated[1]),
+            parseFloat(separated[2]),
+            parseFloat(separated[3]),
+            separated[4],
+            parseFloat(separated[5]),
+            separated[6]
         );
+        items.push(item);
     }
-
-    return { items: items, rawCount: lines.length };
+    return { items: items };
 }
 
-export {loadAllData, loadData, getSolarItems}
+export {loadAllData, loadData, getAllSolarItems}
 
 export type { SolarData, HintsData, TotalData, Inverter, ACData, DCData };
