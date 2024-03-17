@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SolarData, getSolarItems, loadAllData } from "../../dataParser";
+import { SolarData, getAllSolarItems, loadAllData } from "../../dataParser";
 import { DailySolarData } from "../solarGraphPage/solarGraphPage";
 import styles from "./TablePage.module.scss";
 
@@ -8,7 +8,7 @@ export default function TablePage() {
 
     const fetchData = async () => {
         await loadAllData().then((data: string) => {
-            let res = getSolarItems(-1, data);
+            let res = getAllSolarItems(data);
             const items = res.items;
 
             setSolarData(items.reverse());

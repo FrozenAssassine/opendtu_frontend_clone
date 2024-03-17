@@ -32,12 +32,14 @@ export default function SolarGraphPage() {
     const [itemsCount, setItemsCount] = useState(0);
     let allItems: DailySolarData[];
 
+
     const fetchData = async () => {
         await loadAllData().then((data: string) => {
             allItems = getAllSolarItems(data)['items'];
-            let showItems = allItems.splice(showEntryCount);
+            let showItems = allItems.slice(allItems.length - showEntryCount);
 
-            setItemsCount(showItems.length);
+            setItemsCount(allItems.length);
+
             setSolarData(showItems);
 
             setDates(showItems.map((entry) => entry.Date));
@@ -47,7 +49,7 @@ export default function SolarGraphPage() {
             setHighestWatt(showItems.map((entry) => entry.HighestWatt));
         });
     };
-
+    
     useEffect(() => {
         fetchData();
     }, []);
@@ -127,18 +129,6 @@ export default function SolarGraphPage() {
         ],
     };
 
-    const historyData = {
-        labels: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober',' November', 'Dezember'],
-        datasets: [
-            {
-                label: "Baum",
-                data: allItems.map(x => x.YieldDay),
-                backgroundColor: "rgb(0,255,100)",
-                borderColor: "rgb(0,255,100)",
-            },
-        ],
-    };
-
     Chart.register(...registerables);
 
     const showEntryCountInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -152,6 +142,7 @@ export default function SolarGraphPage() {
         const newValue: number = parseInt(event.target.value);
         setShowEntryCount(newValue > 0 ? (newValue < itemsCount ? newValue : 31) : 31);
     };
+
 
     return (
         <div className={styles.solargraphpage}>
@@ -181,7 +172,7 @@ export default function SolarGraphPage() {
                         <Bar className={styles.chartStyle} data={lineYieldDayData} />
                     </div>
                     <div className={styles.chartwrapper}>
-                        <h2>Temperatur Peak (Wh)</h2>
+                        <h2>Temperatur Peak (C°)</h2>
                         <Bar className={styles.chartStyle} data={temperatureData} />
                     </div>
                     <div className={styles.chartwrapper}>
