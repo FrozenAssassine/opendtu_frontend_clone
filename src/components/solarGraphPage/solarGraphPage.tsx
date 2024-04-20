@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./SolarGraphPage.module.scss";
 import { Line, Bar, Scatter, Radar, Pie } from "react-chartjs-2";
-import { SolarData, loadAllData, getAllSolarItems } from "../../dataParser";
 import { Chart, registerables } from "chart.js";
 import React from "react";
 
@@ -17,11 +16,11 @@ class DailySolarData {
     ) {}
 }
 
-interface Props {
-    data: DailySolarData[];
+type Props = {
+    allItems: DailySolarData[];
 }
 
-export default function SolarGraphPage() {
+export default function SolarGraphPage(props: Props) {
     const [dates, setDates] = useState<string[]>([]);
     const [yieldTotal, setYieldTotal] = useState<number[]>([]);
     const [yieldDay, setYieldDay] = useState<number[]>([]);
@@ -30,29 +29,23 @@ export default function SolarGraphPage() {
     const [solarData, setSolarData] = useState<DailySolarData[]>([]);
     const [showEntryCount, setShowEntryCount] = useState(31);
     const [itemsCount, setItemsCount] = useState(0);
-    let allItems: DailySolarData[];
 
+    function updateData() {
+        let showItems = props.allItems.slice(props.allItems.length - showEntryCount);
 
-    const fetchData = async () => {
-        await loadAllData().then((data: string) => {
-            allItems = getAllSolarItems(data)['items'];
-            let showItems = allItems.slice(allItems.length - showEntryCount);
+        setItemsCount(props.allItems.length);
+        setSolarData(showItems);
 
-            setItemsCount(allItems.length);
+        setDates(showItems.map((entry) => entry.Date));
+        setYieldTotal(showItems.map((entry) => entry.YieldTotal));
+        setYieldDay(showItems.map((entry) => entry.YieldDay));
+        setTemperature(showItems.map((entry) => entry.Temperature));
+        setHighestWatt(showItems.map((entry) => entry.HighestWatt));
+    }
 
-            setSolarData(showItems);
-
-            setDates(showItems.map((entry) => entry.Date));
-            setYieldTotal(showItems.map((entry) => entry.YieldTotal));
-            setYieldDay(showItems.map((entry) => entry.YieldDay));
-            setTemperature(showItems.map((entry) => entry.Temperature));
-            setHighestWatt(showItems.map((entry) => entry.HighestWatt));
-        });
-    };
-    
     useEffect(() => {
-        fetchData();
-    }, []);
+        updateData();
+    }, [props.allItems]);
 
     const lineChartData = {
         labels: dates,
@@ -135,14 +128,13 @@ export default function SolarGraphPage() {
         if (event.key === "Enter") {
             const newValue: number = parseInt((event.target as HTMLInputElement).value);
             setShowEntryCount(newValue > 0 ? (newValue < itemsCount ? newValue : 31) : 31);
-            fetchData();
+            updateData();
         }
     };
     const showEntryCountInputChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue: number = parseInt(event.target.value);
         setShowEntryCount(newValue > 0 ? (newValue < itemsCount ? newValue : 31) : 31);
     };
-
 
     return (
         <div className={styles.solargraphpage}>
@@ -168,7 +160,7 @@ export default function SolarGraphPage() {
                         <Bar className={styles.chartStyle} data={barChartData} />
                     </div>
                     <div className={styles.chartwrapper}>
-                        <h2>Ertrag Peak (Wh)</h2>
+                        <h2>Ertrag Peak (W)</h2>
                         <Bar className={styles.chartStyle} data={lineYieldDayData} />
                     </div>
                     <div className={styles.chartwrapper}>

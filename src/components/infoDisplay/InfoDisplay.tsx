@@ -1,7 +1,13 @@
 import { SolarData } from "../../dataParser";
+import { DailySolarData } from "../solarGraphPage/solarGraphPage";
 import styles from "./infoDisplay.module.scss";
 
-export default function InfoDisplay(solarData: SolarData) {
+type Props = {
+    solarData: SolarData;
+    todayData: DailySolarData;
+}
+
+export default function InfoDisplay({solarData, todayData}: Props) {
     return (
         <div className={styles.wrapper}>
             <div>
@@ -14,7 +20,7 @@ export default function InfoDisplay(solarData: SolarData) {
             </div>
             <div className={styles.alignRight}>
                 <div>Erreichbar: {solarData.inverters[0].reachable ? "True" : "False"}</div>
-                <div>Limit: {solarData.inverters[0].limit_absolute}W</div>
+                <div>Watt Peak: {todayData.HighestWatt} Wh</div>
             </div>
         </div>
     );

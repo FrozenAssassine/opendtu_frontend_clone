@@ -3,22 +3,11 @@ import { SolarData, getAllSolarItems, loadAllData } from "../../dataParser";
 import { DailySolarData } from "../solarGraphPage/solarGraphPage";
 import styles from "./TablePage.module.scss";
 
-export default function TablePage() {
-    const [solarData, setSolarData] = useState<DailySolarData[]>([]);
+type Props = {
+    solarData: DailySolarData[];
+}
 
-    const fetchData = async () => {
-        await loadAllData().then((data: string) => {
-            let res = getAllSolarItems(data);
-            const items = res.items;
-
-            setSolarData(items.reverse());
-        });
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
+export default function TablePage(props: Props) {
     return (
         <div className={styles.tablePage}>
             <table>
@@ -32,12 +21,12 @@ export default function TablePage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {solarData.map((day, index) => (
+                    {props.solarData.slice().reverse().map((day, index) => (
                         <tr key={index}>
                             <td>{day.Date}</td>
                             <td>{day.YieldTotal} KWh</td>
-                            <td>{day.YieldDay} W</td>
-                            <td>{day.HighestWatt} Wh</td>
+                            <td>{day.YieldDay} Wh</td>
+                            <td>{day.HighestWatt} W</td>
                             <td>{day.Temperature} °C</td>
                         </tr>
                     ))}
@@ -45,8 +34,5 @@ export default function TablePage() {
             </table>
         </div>
     );
-}
-function setItemsCount(rawCount: number) {
-    throw new Error("Function not implemented.");
 }
 

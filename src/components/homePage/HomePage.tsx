@@ -5,27 +5,14 @@ import SolarCellDisplay from "../solarCellDisplay/SolarCellDisplay";
 import SolarSummaryDisplay from "../solarSummaryDisplay/SolarSummaryDisplay";
 import styles from "./HomePage.module.scss";
 import InfoDisplay from "../infoDisplay/InfoDisplay";
+import { DailySolarData } from "../solarGraphPage/solarGraphPage";
 
-export default function HomePage() {
-    const [solarData, setSolarData] = useState<SolarData | null>(null);
+type Props = {
+  solarData: SolarData | null;
+  todayData: DailySolarData;
+}
 
-    useEffect(() => {
-        const fetchData = async () => {
-          await loadData().then((data) => {
-            setSolarData(data);
-          });
-        };
-    
-        fetchData();
-    
-        const intervalId = setInterval(fetchData, 10000);
-        
-        return () => {
-          clearInterval(intervalId);
-        };
-      }, []);
-    
-
+export default function HomePage({solarData, todayData}: Props) {
     return (
         <div>
             <div className={styles.header}>
@@ -35,7 +22,7 @@ export default function HomePage() {
                     <DisplayTextItem content={solarData?.total.Power} headline="Gesamtleistung"/>
                 </div>
             </div>
-            {solarData !== null && <InfoDisplay {...solarData}/>}
+            {solarData !== null && <InfoDisplay solarData={solarData} todayData={todayData}/>}
 
             <div className={styles.solarCells}>
                 {solarData !== null && <SolarSummaryDisplay {...solarData}/>}
