@@ -1,46 +1,32 @@
-# Getting Started with Create React App
+<p align="center">
+    <img src="path/to/your/image.png" height="150px" width="auto" alt="OpenDTU Logo">
+</p>
+<h1 align="center">OpenDTU Frontend Clone</h1>
+<div align="center">
+     <a href="https://solardtu.example.com">
+         <img src="https://img.shields.io/badge/OpenDTU-Website-blue">
+    </a>
+    <img src="https://img.shields.io/github/stars/YourGithubUser/OpenDTU_frontend_clone?style=flat">
+    <img src="https://img.shields.io/github/issues-pr/YourGithubUser/OpenDTU_frontend_clone?style=flat">
+    <img src="https://img.shields.io/github/repo-size/YourGithubUser/OpenDTU_frontend_clone?style=flat">
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🤔 What is OpenDTU Frontend Clone?
+This is a simple frontend clone of OpenDTU designed to display real-time data from a solar inverter. It visualizes total energy production, current output, and other relevant metrics like voltage, current, and inverter temperature. Ideal for hosting on local or remote servers to keep track of solar energy performance.
 
-## Available Scripts
+## 🌞 Features:
+- Real-time energy production tracking
+- Inverter status and temperature display
+- Easy-to-read charts for performance over time
+- Lightweight and fast
 
-In the project directory, you can run:
+## 🚀 Building the project:
+To build this project, you need Node.js installed. Clone the repository, install dependencies with `npm install`, and start the development server with `npm start`.
 
-### `yarn start`
+## 👨‍👩‍👧‍👦 Contributors:
+If you want to contribute to this project, feel free to open an <a href="https://github.com/YourGithubUser/OpenDTU-frontend-clone/issues/new">issue</a> or a <a href="https://github.com/YourGithubUser/OpenDTU-frontend-clone/pulls">pull request</a>.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📸 Images
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/7042175d-06cb-4250-b181-d948d92f7e1d"/>
+</div>
